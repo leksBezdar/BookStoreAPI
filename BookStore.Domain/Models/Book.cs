@@ -32,8 +32,7 @@
             string? title,
             string? description,
             double rating,
-            decimal price,
-            DateTime dateAdded)
+            decimal price)
         {
             var error = string.Empty;
 
@@ -42,7 +41,7 @@
                 error = $"Title cannot be null, empty, or longer than {MAX_TITLE_LENGTH} characters.";
             }
 
-            var book = new Book(id, title, description, rating, price, dateAdded);
+            var book = new Book(id, title, description, rating, price, DateTime.MinValue);
             return (book, error);
         }
     }

@@ -20,6 +20,10 @@ namespace BookStore.DAL.Configurations
 
             builder.Property(b => b.Price)
                 .IsRequired();
+
+            builder.Property(b => b.DateAdded)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired();
         }
     }
 }

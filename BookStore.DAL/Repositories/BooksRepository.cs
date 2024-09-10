@@ -17,7 +17,7 @@ namespace BookStore.DAL.Repositories
             var bookEntities = await _context.Books.AsNoTracking().ToListAsync();
 
             var books = bookEntities
-                .Select(b => Book.Create(b.Id, b.Title, b.Description, b.Rating, b.Price, b.DateAdded).Book)
+                .Select(b => Book.Create(b.Id, b.Title, b.Description, b.Rating, b.Price).Book)
                 .ToList();
 
             return books;
