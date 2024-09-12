@@ -1,7 +1,6 @@
 ﻿using BookStore.API.Contracts;
 using BookStore.BLL.Services;
 using BookStore.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.API.Controllers
@@ -48,6 +47,28 @@ namespace BookStore.API.Controllers
             var bookId = await _booksService.CreateBook(book);
 
             return Ok(bookId);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<string>> UpdateBook(int id,  [FromBody] BooksRequest bookRequest)
+        {
+            var res = await _booksService.UpdateBook(
+                id,
+                bookRequest.Title,
+                bookRequest.Description,
+                bookRequest.Rating,
+                bookRequest.Price
+            );
+
+            return Ok(res);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<string>> DeleteBook(int id)
+        {
+            var res = await _booksService.DeleteBook(id);
+
+            return Ok(res);
         }
     }
 }
